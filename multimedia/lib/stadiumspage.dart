@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:multimedia/stadiumpage.dart';
+import 'package:multimedia/video.dart';
 
 class StadiumsPage extends StatefulWidget {
   const StadiumsPage({super.key});
@@ -16,6 +17,7 @@ class _StadiumsPageState extends State<StadiumsPage> {
   // variables
   bool isSwich = false;
   Icon ne = Icon(Icons.favorite_outlined);
+  bool longpress = false;
 
   //functions
 
@@ -52,6 +54,16 @@ class _StadiumsPageState extends State<StadiumsPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(13),
                     child: GestureDetector(
+                      onLongPressStart: (s) {
+                        setState(() {
+                          longpress = true;
+                        });
+                      },
+                      onLongPressEnd: (details) {
+                        setState(() {
+                          longpress = false;
+                        });
+                      },
                       onTap: () {
                         Navigator.of(context).push(
                             MaterialPageRoute(builder: (BuildContext context) {
@@ -61,7 +73,14 @@ class _StadiumsPageState extends State<StadiumsPage> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.asset('images/1.jpg'),
+                            longpress
+                                ? Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                                    child: Container(
+                                        width: 400, height: 300, child: Home()),
+                                  )
+                                : Image.asset('images/1.jpg'),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
@@ -126,6 +145,16 @@ class _StadiumsPageState extends State<StadiumsPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(13),
                     child: GestureDetector(
+                      onLongPressStart: (s) {
+                        setState(() {
+                          longpress = true;
+                        });
+                      },
+                      onLongPressEnd: (details) {
+                        setState(() {
+                          longpress = false;
+                        });
+                      },
                       onTap: () {
                         Navigator.of(context).push(
                             MaterialPageRoute(builder: (BuildContext context) {
@@ -135,7 +164,14 @@ class _StadiumsPageState extends State<StadiumsPage> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.asset('images/1.jpg'),
+                            longpress
+                                ? Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                                    child: Container(
+                                        width: 400, height: 300, child: Home()),
+                                  )
+                                : Image.asset('images/1.jpg'),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
@@ -146,11 +182,9 @@ class _StadiumsPageState extends State<StadiumsPage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Center(
-                                  child: Text(
-                                    'Address',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                                Text(
+                                  'Address',
+                                  style: TextStyle(color: Colors.white),
                                 ),
                               ],
                             ),
@@ -201,60 +235,85 @@ class _StadiumsPageState extends State<StadiumsPage> {
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(13),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Image.asset('images/1.jpg'),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Stadium Name',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Address',
+                    child: GestureDetector(
+                      onLongPressStart: (s) {
+                        setState(() {
+                          longpress = true;
+                        });
+                      },
+                      onLongPressEnd: (details) {
+                        setState(() {
+                          longpress = false;
+                        });
+                      },
+                      onTap: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return const StadiumPage();
+                        }));
+                      },
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            longpress
+                                ? Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                                    child: Container(
+                                        width: 400, height: 300, child: Home()),
+                                  )
+                                : Image.asset('images/1.jpg'),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Stadium Name',
                                 style: TextStyle(color: Colors.white),
                               ),
-                            ],
-                          ),
-                          Text(
-                            'Price',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextButton(
-                                style: const ButtonStyle(
-                                    iconColor:
-                                        MaterialStatePropertyAll(Colors.white)),
-                                child: isSwich
-                                    ? ne
-                                    : Icon(Icons.favorite_border_rounded),
-                                onPressed: () {
-                                  setState(() {
-                                    isSwich = !isSwich;
-                                  });
-                                }),
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    isSwich ? Colors.green : Colors.blue),
-                            onPressed: () {
-                              debugPrint('elevated button');
-                            },
-                            child: const Text(
-                              'Book Now :)',
-                              style: TextStyle(fontWeight: FontWeight.w700),
                             ),
-                          ),
-                        ]),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Address',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              'Price',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextButton(
+                                  style: const ButtonStyle(
+                                      iconColor: MaterialStatePropertyAll(
+                                          Colors.white)),
+                                  child: isSwich
+                                      ? ne
+                                      : Icon(Icons.favorite_border_rounded),
+                                  onPressed: () {
+                                    setState(() {
+                                      isSwich = !isSwich;
+                                    });
+                                  }),
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      isSwich ? Colors.green : Colors.blue),
+                              onPressed: () {
+                                debugPrint('elevated button');
+                              },
+                              child: const Text(
+                                'Book Now :)',
+                                style: TextStyle(fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ]),
+                    ),
                   ),
                 ),
               ),
@@ -267,60 +326,85 @@ class _StadiumsPageState extends State<StadiumsPage> {
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(13),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Image.asset('images/1.jpg'),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Stadium Name',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Address',
+                    child: GestureDetector(
+                      onLongPressStart: (s) {
+                        setState(() {
+                          longpress = true;
+                        });
+                      },
+                      onLongPressEnd: (details) {
+                        setState(() {
+                          longpress = false;
+                        });
+                      },
+                      onTap: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return const StadiumPage();
+                        }));
+                      },
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            longpress
+                                ? Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                                    child: Container(
+                                        width: 400, height: 300, child: Home()),
+                                  )
+                                : Image.asset('images/1.jpg'),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Stadium Name',
                                 style: TextStyle(color: Colors.white),
                               ),
-                            ],
-                          ),
-                          Text(
-                            'Price',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextButton(
-                                style: const ButtonStyle(
-                                    iconColor:
-                                        MaterialStatePropertyAll(Colors.white)),
-                                child: isSwich
-                                    ? ne
-                                    : Icon(Icons.favorite_border_rounded),
-                                onPressed: () {
-                                  setState(() {
-                                    isSwich = !isSwich;
-                                  });
-                                }),
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    isSwich ? Colors.green : Colors.blue),
-                            onPressed: () {
-                              debugPrint('elevated button');
-                            },
-                            child: const Text(
-                              'Book Now :)',
-                              style: TextStyle(fontWeight: FontWeight.w700),
                             ),
-                          ),
-                        ]),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Address',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              'Price',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextButton(
+                                  style: const ButtonStyle(
+                                      iconColor: MaterialStatePropertyAll(
+                                          Colors.white)),
+                                  child: isSwich
+                                      ? ne
+                                      : Icon(Icons.favorite_border_rounded),
+                                  onPressed: () {
+                                    setState(() {
+                                      isSwich = !isSwich;
+                                    });
+                                  }),
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      isSwich ? Colors.green : Colors.blue),
+                              onPressed: () {
+                                debugPrint('elevated button');
+                              },
+                              child: const Text(
+                                'Book Now :)',
+                                style: TextStyle(fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ]),
+                    ),
                   ),
                 ),
               ),
@@ -333,60 +417,85 @@ class _StadiumsPageState extends State<StadiumsPage> {
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(13),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Image.asset('images/1.jpg'),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Stadium Name',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Address',
+                    child: GestureDetector(
+                      onLongPressStart: (s) {
+                        setState(() {
+                          longpress = true;
+                        });
+                      },
+                      onLongPressEnd: (details) {
+                        setState(() {
+                          longpress = false;
+                        });
+                      },
+                      onTap: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return const StadiumPage();
+                        }));
+                      },
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            longpress
+                                ? Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                                    child: Container(
+                                        width: 400, height: 300, child: Home()),
+                                  )
+                                : Image.asset('images/1.jpg'),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Stadium Name',
                                 style: TextStyle(color: Colors.white),
                               ),
-                            ],
-                          ),
-                          Text(
-                            'Price',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextButton(
-                                style: const ButtonStyle(
-                                    iconColor:
-                                        MaterialStatePropertyAll(Colors.white)),
-                                child: isSwich
-                                    ? ne
-                                    : Icon(Icons.favorite_border_rounded),
-                                onPressed: () {
-                                  setState(() {
-                                    isSwich = !isSwich;
-                                  });
-                                }),
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    isSwich ? Colors.green : Colors.blue),
-                            onPressed: () {
-                              debugPrint('elevated button');
-                            },
-                            child: const Text(
-                              'Book Now :)',
-                              style: TextStyle(fontWeight: FontWeight.w700),
                             ),
-                          ),
-                        ]),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Address',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              'Price',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextButton(
+                                  style: const ButtonStyle(
+                                      iconColor: MaterialStatePropertyAll(
+                                          Colors.white)),
+                                  child: isSwich
+                                      ? ne
+                                      : Icon(Icons.favorite_border_rounded),
+                                  onPressed: () {
+                                    setState(() {
+                                      isSwich = !isSwich;
+                                    });
+                                  }),
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      isSwich ? Colors.green : Colors.blue),
+                              onPressed: () {
+                                debugPrint('elevated button');
+                              },
+                              child: const Text(
+                                'Book Now :)',
+                                style: TextStyle(fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ]),
+                    ),
                   ),
                 ),
               ),
@@ -399,60 +508,85 @@ class _StadiumsPageState extends State<StadiumsPage> {
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(13),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Image.asset('images/1.jpg'),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Stadium Name',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Address',
+                    child: GestureDetector(
+                      onLongPressStart: (s) {
+                        setState(() {
+                          longpress = true;
+                        });
+                      },
+                      onLongPressEnd: (details) {
+                        setState(() {
+                          longpress = false;
+                        });
+                      },
+                      onTap: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return const StadiumPage();
+                        }));
+                      },
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            longpress
+                                ? Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                                    child: Container(
+                                        width: 400, height: 300, child: Home()),
+                                  )
+                                : Image.asset('images/1.jpg'),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Stadium Name',
                                 style: TextStyle(color: Colors.white),
                               ),
-                            ],
-                          ),
-                          Text(
-                            'Price',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextButton(
-                                style: const ButtonStyle(
-                                    iconColor:
-                                        MaterialStatePropertyAll(Colors.white)),
-                                child: isSwich
-                                    ? ne
-                                    : Icon(Icons.favorite_border_rounded),
-                                onPressed: () {
-                                  setState(() {
-                                    isSwich = !isSwich;
-                                  });
-                                }),
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    isSwich ? Colors.green : Colors.blue),
-                            onPressed: () {
-                              debugPrint('elevated button');
-                            },
-                            child: const Text(
-                              'Book Now :)',
-                              style: TextStyle(fontWeight: FontWeight.w700),
                             ),
-                          ),
-                        ]),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Address',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              'Price',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextButton(
+                                  style: const ButtonStyle(
+                                      iconColor: MaterialStatePropertyAll(
+                                          Colors.white)),
+                                  child: isSwich
+                                      ? ne
+                                      : Icon(Icons.favorite_border_rounded),
+                                  onPressed: () {
+                                    setState(() {
+                                      isSwich = !isSwich;
+                                    });
+                                  }),
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      isSwich ? Colors.green : Colors.blue),
+                              onPressed: () {
+                                debugPrint('elevated button');
+                              },
+                              child: const Text(
+                                'Book Now :)',
+                                style: TextStyle(fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ]),
+                    ),
                   ),
                 ),
               ),

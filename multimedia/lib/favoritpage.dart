@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multimedia/stadiumpage.dart';
+import 'package:multimedia/video.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({super.key});
@@ -13,6 +14,7 @@ class _FavoritePageState extends State<FavoritePage> {
   //variables
   bool isSwich = true;
   bool isStared = true;
+  bool longpress = false;
   Icon ne = Icon(Icons.favorite_outlined);
   @override
   Widget build(BuildContext context) {
@@ -45,6 +47,16 @@ class _FavoritePageState extends State<FavoritePage> {
                   child: Padding(
                     padding: const EdgeInsets.all(13),
                     child: GestureDetector(
+                      onLongPressStart: (s) {
+                        setState(() {
+                          longpress = true;
+                        });
+                      },
+                      onLongPressEnd: (details) {
+                        setState(() {
+                          longpress = false;
+                        });
+                      },
                       onTap: () {
                         Navigator.of(context).push(
                             MaterialPageRoute(builder: (BuildContext context) {
@@ -54,7 +66,14 @@ class _FavoritePageState extends State<FavoritePage> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.asset('images/1.jpg'),
+                            longpress
+                                ? Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                                    child: Container(
+                                        width: 400, height: 300, child: Home()),
+                                  )
+                                : Image.asset('images/1.jpg'),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
@@ -119,6 +138,16 @@ class _FavoritePageState extends State<FavoritePage> {
                   child: Padding(
                     padding: const EdgeInsets.all(13),
                     child: GestureDetector(
+                      onLongPressStart: (s) {
+                        setState(() {
+                          longpress = true;
+                        });
+                      },
+                      onLongPressEnd: (details) {
+                        setState(() {
+                          longpress = false;
+                        });
+                      },
                       onTap: () {
                         Navigator.of(context).push(
                             MaterialPageRoute(builder: (BuildContext context) {
@@ -128,7 +157,14 @@ class _FavoritePageState extends State<FavoritePage> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.asset('images/1.jpg'),
+                            longpress
+                                ? Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                                    child: Container(
+                                        width: 400, height: 300, child: Home()),
+                                  )
+                                : Image.asset('images/1.jpg'),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
@@ -139,11 +175,9 @@ class _FavoritePageState extends State<FavoritePage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Center(
-                                  child: Text(
-                                    'Address',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                                Text(
+                                  'Address',
+                                  style: TextStyle(color: Colors.white),
                                 ),
                               ],
                             ),

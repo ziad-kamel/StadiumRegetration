@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:multimedia/video.dart';
+import 'package:video_player/video_player.dart';
 
 class StadiumPage extends StatefulWidget {
   const StadiumPage({super.key});
@@ -152,21 +154,37 @@ class _StadiumPageState extends State<StadiumPage> {
                         ),
                       ],
                     ),
-                    Image.asset('images/1.jpg'),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                      child: Center(
+                        child: Container(
+                          width: 400,
+                          height: 300,
+                          child: Home(),
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('Openning Time'),
+                      child: Text(
+                        'Openning Time',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('هلاهلاهلاهلا'),
-                        Icon(Icons.location_on_rounded)
+                        Icon(
+                          Icons.location_on_rounded,
+                          color: Colors.white,
+                        ),
+                        Text('Address', style: TextStyle(color: Colors.white)),
                       ],
                     ),
                     Text(
                       'Price',
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600, color: Colors.white),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -205,3 +223,44 @@ class _StadiumPageState extends State<StadiumPage> {
     );
   }
 }
+
+// class Home extends StatefulWidget {
+//   const Home({super.key});
+
+//   @override
+//   State<Home> createState() => _HomeState();
+// }
+
+// class _HomeState extends State<Home> {
+//   late VideoPlayerController _controller;
+//   @override
+//   void initState() {
+//     // TODO: implement initState
+//     _controller = VideoPlayerController.asset('images/t.mp4')
+//       ..initialize().then((_) {
+//         setState(() {});
+//       });
+//     super.initState();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('video'),
+//       ),
+//       body: content(),
+//     );
+//   }
+
+//   Widget content() {
+//     return Center(
+//       child: Container(
+//           width: 350,
+//           height: 350,
+//           child: _controller.value.isInitialized
+//               ? VideoPlayer(_controller)
+//               : Container()),
+//     );
+//   }
+// }

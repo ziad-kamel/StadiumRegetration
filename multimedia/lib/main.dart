@@ -1,9 +1,11 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:multimedia/audio.dart';
 import 'package:multimedia/favoritpage.dart';
 import 'package:multimedia/profilepage.dart';
 import 'package:multimedia/stadiumpage.dart';
+import 'package:multimedia/video.dart';
 
 import 'stadiumspage.dart';
 
@@ -40,9 +42,15 @@ class _MyHomePageState extends State<MyHomePage> {
     StadiumsPage(),
     FavoritePage(),
     ProfilePage(),
+    video(),
+    audio()
   ];
 
   //functions
+  void my() {
+    final player = AudioPlayer();
+    player.play(DeviceFileSource('images/3.mp3'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -222,7 +230,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: bottomPages[crtIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color.fromARGB(106, 143, 174, 233),
+        backgroundColor: Color.fromARGB(106, 149, 143, 233),
         items: [
           BottomNavigationBarItem(
               label: 'Stadiums',
@@ -241,6 +249,18 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icon(
                 Icons.person_outline,
                 color: Colors.blue[700],
+              )),
+          BottomNavigationBarItem(
+              label: 'video',
+              icon: Icon(
+                Icons.play_arrow_sharp,
+                color: Colors.red[900],
+              )),
+          BottomNavigationBarItem(
+              label: 'audio',
+              icon: Icon(
+                Icons.music_note,
+                color: Colors.red[900],
               )),
         ],
         currentIndex: crtIndex,
