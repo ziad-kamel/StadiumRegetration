@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,6 +24,15 @@ class _StadiumPageState extends State<StadiumPage> {
   bool isStared5 = false;
   Icon ne = Icon(Icons.favorite_outlined);
   //func
+  void audio() {
+    final player = AudioPlayer();
+    player.play(DeviceFileSource('images/a.mp3')).then((value) {
+      Timer(Duration(seconds: 2), () {
+        player.pause();
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -207,6 +219,7 @@ class _StadiumPageState extends State<StadiumPage> {
                               isSwich ? Colors.green : Colors.blue),
                       onPressed: () {
                         debugPrint('elevated button');
+                        audio();
                       },
                       child: const Text(
                         'Book Now :)',

@@ -42,8 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
     StadiumsPage(),
     FavoritePage(),
     ProfilePage(),
-    video(),
-    audio()
   ];
 
   //functions
@@ -249,18 +247,6 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icon(
                 Icons.person_outline,
                 color: Colors.blue[700],
-              )),
-          BottomNavigationBarItem(
-              label: 'video',
-              icon: Icon(
-                Icons.play_arrow_sharp,
-                color: Colors.red[900],
-              )),
-          BottomNavigationBarItem(
-              label: 'audio',
-              icon: Icon(
-                Icons.music_note,
-                color: Colors.red[900],
               )),
         ],
         currentIndex: crtIndex,

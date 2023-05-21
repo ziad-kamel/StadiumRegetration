@@ -25,7 +25,7 @@ class audio extends StatelessWidget {
                   player.pause();
                 } else {
                   player.play(DeviceFileSource('images/a.mp3')).then((value) {
-                    Timer(Duration(seconds: 10), () {
+                    Timer(Duration(seconds: 2), () {
                       player.pause();
                     });
                   });

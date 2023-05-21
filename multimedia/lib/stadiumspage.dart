@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:ui';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,7 +23,14 @@ class _StadiumsPageState extends State<StadiumsPage> {
 
   //functions
 
-  void myfunc() {}
+  void audio() {
+    final player = AudioPlayer();
+    player.play(DeviceFileSource('images/a.mp3')).then((value) {
+      Timer(Duration(seconds: 2), () {
+        player.pause();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,6 +133,7 @@ class _StadiumsPageState extends State<StadiumsPage> {
                                       isSwich ? Colors.green : Colors.blue),
                               onPressed: () {
                                 debugPrint('elevated button');
+                                audio();
                               },
                               child: const Text(
                                 'Book Now :)',
@@ -215,6 +225,7 @@ class _StadiumsPageState extends State<StadiumsPage> {
                                       isSwich ? Colors.green : Colors.blue),
                               onPressed: () {
                                 debugPrint('elevated button');
+                                audio();
                               },
                               child: const Text(
                                 'Book Now :)',
@@ -306,6 +317,7 @@ class _StadiumsPageState extends State<StadiumsPage> {
                                       isSwich ? Colors.green : Colors.blue),
                               onPressed: () {
                                 debugPrint('elevated button');
+                                audio();
                               },
                               child: const Text(
                                 'Book Now :)',
@@ -397,6 +409,7 @@ class _StadiumsPageState extends State<StadiumsPage> {
                                       isSwich ? Colors.green : Colors.blue),
                               onPressed: () {
                                 debugPrint('elevated button');
+                                audio();
                               },
                               child: const Text(
                                 'Book Now :)',
@@ -488,6 +501,7 @@ class _StadiumsPageState extends State<StadiumsPage> {
                                       isSwich ? Colors.green : Colors.blue),
                               onPressed: () {
                                 debugPrint('elevated button');
+                                audio();
                               },
                               child: const Text(
                                 'Book Now :)',
@@ -579,6 +593,7 @@ class _StadiumsPageState extends State<StadiumsPage> {
                                       isSwich ? Colors.green : Colors.blue),
                               onPressed: () {
                                 debugPrint('elevated button');
+                                audio();
                               },
                               child: const Text(
                                 'Book Now :)',
